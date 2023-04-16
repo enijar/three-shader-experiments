@@ -6,7 +6,7 @@ import Portal from "@/components/portal/portal";
 export default function Home() {
   const lightRef = React.useRef<THREE.SpotLight>(null);
   // @ts-ignore
-  useHelper(lightRef, THREE.SpotLightHelper);
+  useHelper(process.env.NODE_ENV === "development" ? lightRef : false, THREE.SpotLightHelper);
 
   return (
     <>

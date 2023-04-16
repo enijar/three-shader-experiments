@@ -87,6 +87,7 @@ const config = {
     // Add ENV_VARS here to make them available inside the app
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(dotenv.config().parsed),
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
     }),
     new ForkTsCheckerWebpackPlugin(),
     new HtmlWebpackPlugin({
