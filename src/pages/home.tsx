@@ -1,18 +1,14 @@
 import React from "react";
 import * as THREE from "three";
-import { useHelper } from "@react-three/drei";
 import Portal from "@/components/portal/portal";
 
 export default function Home() {
-  const lightRef = React.useRef<THREE.SpotLight>(null);
-  // @ts-ignore
-  useHelper(process.env.NODE_ENV === "development" ? lightRef : false, THREE.SpotLightHelper);
-
   return (
     <>
       <Portal />
       <ambientLight intensity={0.3} />
-      <spotLight ref={lightRef} position={[5, 5, 5]} color="#ffffff" angle={THREE.MathUtils.degToRad(20)} intensity={0.3} />
+      <rectAreaLight position={[0, 0, -0.1]} color="#8327c0" intensity={10} width={1.5} height={1.5} rotation-x={THREE.MathUtils.degToRad(180)} />
+      <rectAreaLight position={[0, 0, -0.1]} color="#f65dac" intensity={2.5} width={1.5} height={1.5} rotation-x={THREE.MathUtils.degToRad(180)} />
     </>
   );
 }

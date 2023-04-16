@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import vertex from "@/shaders/portal/vertex.glsl";
 import fragment from "@/shaders/portal/fragment.glsl";
+import { MeshReflectorMaterial } from "@react-three/drei";
 
 export default function Portal() {
   const portalRef = React.useRef<THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>>(null);
@@ -54,6 +55,18 @@ export default function Portal() {
       <mesh ref={portalRef}>
         <circleGeometry args={[1, 64]} />
         <shaderMaterial key={key} vertexShader={vertex} fragmentShader={fragment} uniforms={uniforms} side={THREE.DoubleSide} lights={true} transparent={true} extensions={{ derivatives: true, fragDepth: true, drawBuffers: true, shaderTextureLOD: true }} />
+      </mesh>
+
+      <group position-y={-1}>
+        <mesh rotation-x={THREE.MathUtils.degToRad(-90)}>
+          <planeGeometry args={[20, 20]} />
+          <MeshReflectorMaterial mirror={0} color="#666666" resolution={1024} />
+        </mesh>
+      </group>
+
+      <mesh>
+        <torusGeometry args={[1.25, 0.3, 32, 100]} />
+        <meshStandardMaterial color="#666666" />
       </mesh>
     </>
   );
